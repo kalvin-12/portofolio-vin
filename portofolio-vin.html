@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIN Tech | Network & System Engineer</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Light Theme Variables */
+        body.light-theme {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #e9ecef;
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --text-muted: #6c757d;
+            --accent-color: #0d6efd;
+            --accent-hover: #0b5ed7;
+            --card-bg: #ffffff;
+            --card-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+            --navbar-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #dee2e6;
+            --skill-tag-bg: #e9ecef;
+            --skill-tag-text: #212529;
+            --input-bg: #ffffff;
+            --input-border: #ced4da;
+            --footer-bg: #212529;
+            --footer-text: #f8f9fa;
+        }
+
+        /* Dark Theme Variables */
+        body.dark-theme {
+            --bg-primary: #212529;
+            --bg-secondary: #343a40;
+            --bg-tertiary: #2b3035;
+            --text-primary: #f8f9fa;
+            --text-secondary: #ced4da;
+            --text-muted: #6c757d;
+            --accent-color: #6ea8fe;
+            --accent-hover: #8bb9fe;
+            --card-bg: #2b3035;
+            --card-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+            --navbar-bg: rgba(33, 37, 41, 0.95);
+            --border-color: #495057;
+            --skill-tag-bg: #495057;
+            --skill-tag-text: #f8f9fa;
+            --input-bg: #495057;
+            --input-border: #6c757d;
+            --footer-bg: #1a1e21;
+            --footer-text: #f8f9fa;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-muted);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: var(--navbar-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: var(--text-primary) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-secondary) !important;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-color) !important;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: var(--bg-tertiary);
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-primary) 100%);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            max-width: 600px;
+        }
+
+        .highlight {
+            color: var(--accent-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(13, 110, 253, 0.1);
+            z-index: -1;
+        }
+
+        /* Buttons */
+        .btn-custom {
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary-custom {
+            background-color: var(--accent-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(13, 110, 253, 0.2);
+        }
+
+        .btn-primary-custom:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(13, 110, 253, 0.3);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            margin-left: 15px;
+        }
+
+        .btn-outline-custom:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Image */
+        .hero-image-wrapper {
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 4px solid var(--accent-color);
+        }
+
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            color: var(--accent-color);
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about,
+        .portfolio,
+        .services,
+        .contact {
+            padding: 80px 0;
+            background-color: var(--bg-secondary);
+            transition: background-color 0.3s ease;
+        }
+
+        .portfolio {
+            background-color: var(--bg-primary);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--skill-tag-bg);
+            border-radius: 50px;
+            margin: 0 10px 10px 0;
+            font-size: 0.9rem;
+            color: var(--skill-tag-text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-tag:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+        }
+
+        /* Portfolio Section */
+        .portfolio-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            height: 100%;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .portfolio-card:hover .portfolio-image {
+            transform: scale(1.05);
+        }
+
+        .portfolio-content {
+            padding: 25px;
+        }
+
+        .portfolio-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .portfolio-category {
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .portfolio-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tech-badge {
+            background-color: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .portfolio-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        .portfolio-link:hover {
+            color: var(--accent-hover);
+            transform: translateX(5px);
+        }
+
+        /* Services Section */
+        .service-item {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            height: 100%;
+            border: 1px solid var(--border-color);
+        }
+
+        .service-item:hover {
+            background-color: var(--bg-tertiary);
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .service-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .service-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            padding: 40px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--bg-tertiary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            background-color: var(--accent-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .contact-text h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .contact-text p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            margin-top: 30px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: var(--bg-tertiary);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Form */
+        .form-control,
+        .form-control-lg {
+            background-color: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 10px;
+        }
+
+        .form-control:focus {
+            background-color: var(--input-bg);
+            border-color: var(--accent-color);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 30px 0;
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .btn-outline-custom {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+            
+            .hero-image-wrapper {
+                margin-top: 50px;
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-network-wired me-2"></i>SFX Tech
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <button class="theme-toggle ms-3" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <span class="section-subtitle" id="greeting">Network & System Engineer</span>
+                        <h1 class="hero-title" id="heroTitle">
+                            Building <span class="highlight">robust</span><br>
+                            digital infrastructure
+                        </h1>
+                        <p class="hero-subtitle" id="heroSubtitle">
+                            Specialist in network engineering, system administration, 
+                            and full-stack development with 5+ years of experience.
+                        </p>
+                        <div class="hero-buttons" id="heroButtons">
+                            <a href="#portfolio" class="btn btn-custom btn-primary-custom">View Projects</a>
+                            <a href="#contact" class="btn btn-custom btn-outline-custom">Hire Me</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image-wrapper" id="heroImage">
+                        <img src="https://placehold.co/600x400/0d6efd/white?text=SFX+Tech" 
+                             alt="SFX Tech" class="hero-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <span class="section-subtitle fade-up">About Me</span>
+                    <h2 class="section-title fade-up">Multidisciplinary tech specialist</h2>
+                    <p class="about-text fade-up">
+                        Saya adalah seorang Network & System Engineer dengan pengalaman luas dalam 
+                        infrastruktur IT, pengembangan web, dan keamanan jaringan. Berbasis di Indonesia, 
+                        saya telah menangani berbagai proyek dari skala kecil hingga enterprise.
+                    </p>
+                    <p class="about-text fade-up">
+                        Keahlian saya mencakup konfigurasi router Ruijie, setup server Linux, 
+                        maintenance jaringan, serta pengembangan web full-stack. Saya percaya bahwa 
+                        infrastruktur yang solid adalah kunci kesuksesan setiap bisnis digital.
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="skills">
+                        <h3 class="h5 mb-4 fade-up">Technical Skills</h3>
+                        <div class="fade-up">
+                            <span class="skill-tag"><i class="fab fa-php me-2"></i>Web Dev (Backend)</span>
+                            <span class="skill-tag"><i class="fab fa-git-alt me-2"></i>Git</span>
+                            <span class="skill-tag"><i class="fab fa-linux me-2"></i>Linux</span>
+                            <span class="skill-tag"><i class="fas fa-tools me-2"></i>Computer Repair</span>
+                            <span class="skill-tag"><i class="fas fa-network-wired me-2"></i>Network Engineer</span>
+                            <span class="skill-tag"><i class="fas fa-video me-2"></i>CCTV Engineer</span>
+                            <span class="skill-tag"><i class="fas fa-server me-2"></i>Web Server</span>
+                            <span class="skill-tag"><i class="fas fa-mail-bulk me-2"></i>Mail Server</span>
+                            <span class="skill-tag"><i class="fas fa-dharmachakra me-2"></i>DHCP Server</span>
+                            <span class="skill-tag"><i class="fab fa-ubuntu me-2"></i>Debian/Ubuntu</span>
+                            <span class="skill-tag"><i class="fas fa-router me-2"></i>Ruijie</span>
+                            <span class="skill-tag"><i class="fas fa-cloud me-2"></i>SD-WAN</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-subtitle fade-up">My Work</span>
+                <h2 class="section-title fade-up">Featured Projects</h2>
+                <p class="text-secondary fade-up">Berbagai proyek yang telah saya kerjakan</p>
+            </div>
+            <div class="row g-4">
+                <!-- Web Dev Project -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="portfolio-card">
+                        <img src="https://placehold.co/600x400/0d6efd/white?text=Jatim+Suzuki" 
+                             alt="Jatim Suzuki" class="portfolio-image">
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">Web Development</span>
+                            <h3 class="portfolio-title">Jatim Suzuki Official Website</h3>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">PHP</span>
+                                <span class="tech-badge">Laravel</span>
+                                <span class="tech-badge">MySQL</span>
+                                <span class="tech-badge">Bootstrap</span>
+                            </div>
+                            <p class="portfolio-description">
+                                Website resmi dealer Suzuki di Jawa Timur dengan sistem manajemen konten, 
+                                inventory motor, dan fitur booking service online.
+                            </p>
+                            <a href="https://jatimsuzuki.com" target="_blank" class="portfolio-link">
+                                Visit Website <i class="fas fa-external-link-alt ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CCTV Project -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="portfolio-card">
+                        <img src="https://placehold.co/600x400/198754/white?text=CCTV+System" 
+                             alt="CCTV Installation" class="portfolio-image">
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">CCTV Engineering</span>
+                            <h3 class="portfolio-title">Smart City Surveillance</h3>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">Hikvision</span>
+                                <span class="tech-badge">Dahua</span>
+                                <span class="tech-badge">NVR</span>
+                                <span class="tech-badge">IVMS-4200</span>
+                                <span class="tech-badge">Poe Switch</span>
+                            </div>
+                            <p class="portfolio-description">
+                                Instalasi dan konfigurasi sistem CCTV untuk 50+ titik di area publik, 
+                                termasuk integrasi dengan command center, akses remote monitoring via mobile,
+                                dan setting motion detection dengan notifikasi real-time.
+                            </p>
+                            <a href="#" class="portfolio-link">
+                                View Details <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network Engineer Project -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="portfolio-card">
+                        <img src="https://placehold.co/600x400/dc3545/white?text=SD-WAN+Ruijie" 
+                             alt="Network Infrastructure" class="portfolio-image">
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">Network Engineering</span>
+                            <h3 class="portfolio-title">SD-WAN Ruijie Multi-branch</h3>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">Ruijie</span>
+                                <span class="tech-badge">SD-WAN</span>
+                                <span class="tech-badge">VLAN</span>
+                                <span class="tech-badge">OSPF</span>
+                                <span class="tech-badge">QoS</span>
+                                <span class="tech-badge">VPN</span>
+                            </div>
+                            <p class="portfolio-description">
+                                Konfigurasi Ruijie router untuk koneksi antar cabang dengan beda segmen 
+                                tanpa IP publik menggunakan teknologi SD-WAN. Implementasi VLAN untuk segmentasi,
+                                routing dinamis OSPF, dan QoS untuk prioritas bandwidth.
+                            </p>
+                            <a href="#" class="portfolio-link">
+                                View Details <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Computer Repair Project -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="portfolio-card">
+                        <img src="https://placehold.co/600x400/ffc107/212529?text=PC+Repair" 
+                             alt="Computer Repair" class="portfolio-image">
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">Computer Repair</span>
+                            <h3 class="portfolio-title">PC & Laptop Maintenance</h3>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">Hardware</span>
+                                <span class="tech-badge">Troubleshooting</span>
+                                <span class="tech-badge">Upgrade</span>
+                                <span class="tech-badge">Data Recovery</span>
+                                <span class="tech-badge">Rakit PC</span>
+                            </div>
+                            <p class="portfolio-description">
+                                Service dan perbaikan berbagai merek laptop (Asus, Acer, Lenovo, HP, Dell),
+                                rakit PC custom untuk gaming dan workstation, upgrade komponen (RAM, SSD, VGA),
+                                troubleshooting hardware, dan data recovery untuk klien personal & korporat.
+                            </p>
+                            <a href="#" class="portfolio-link">
+                                View Details <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Linux Server Project -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="portfolio-card">
+                        <img src="https://placehold.co/600x400/6f42c1/white?text=Linux+Server" 
+                             alt="Linux Server" class="portfolio-image">
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">Linux System Admin</span>
+                            <h3 class="portfolio-title">Complete Mail & Web Server</h3>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">Debian 11/12</span>
+                                <span class="tech-badge">Ubuntu 22.04</span>
+                                <span class="tech-badge">Postfix</span>
+                                <span class="tech-badge">Dovecot</span>
+                                <span class="tech-badge">Apache/NGINX</span>
+                                <span class="tech-badge">ISC-DHCP</span>
+                                <span class="tech-badge">Bind9</span>
+                            </div>
+                            <p class="portfolio-description">
+                                Setup dan konfigurasi web server (Apache/NGINX), mail server (Postfix, Dovecot) 
+                                dengan anti-spam, DHCP server, DNS server, dan firewall pada environment 
+                                Debian/Ubuntu untuk kebutuhan kantor dan hosting.
+                            </p>
+                            <a href="#" class="portfolio-link">
+                                View Details <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LinuxSFX Project -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="portfolio-card">
+                        <img src="https://placehold.co/600x400/20c997/212529?text=LinuxSFX" 
+                             alt="LinuxSFX" class="portfolio-image">
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">Linux Development</span>
+                            <h3 class="portfolio-title">LinuxSFX Integration Project</h3>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">Bash Scripting</span>
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Docker</span>
+                                <span class="tech-badge">Ansible</span>
+                                <span class="tech-badge">Prometheus</span>
+                                <span class="tech-badge">Grafana</span>
+                            </div>
+                            <p class="portfolio-description">
+                                Integrasi berbagai layanan Linux termasuk automation script dengan Bash/Python,
+                                containerization menggunakan Docker untuk microservices, configuration management
+                                dengan Ansible, dan monitoring server menggunakan Prometheus & Grafana.
+                            </p>
+                            <a href="#" class="portfolio-link">
+                                View Details <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-subtitle fade-up">What I Do</span>
+                <h2 class="section-title fade-up">Professional Services</h2>
+                <p class="text-secondary fade-up">Solusi IT lengkap untuk kebutuhan Anda</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="service-title">Web Development</h3>
+                        <p class="service-description">
+                            Pengembangan website dinamis dengan PHP, Laravel, MySQL. 
+                            Portfolio: jatimsuzuki.com dan berbagai project korporat lainnya.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h3 class="service-title">Network Engineer</h3>
+                        <p class="service-description">
+                            Konfigurasi router Ruijie, Cisco, Mikrotik. Implementasi SD-WAN, 
+                            VLAN, routing dinamis (OSPF, BGP), dan network security.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="service-title">Linux System Admin</h3>
+                        <p class="service-description">
+                            Setup web server (Apache/NGINX), mail server (Postfix/Dovecot), 
+                            DHCP server, DNS server, dan firewall pada Debian/Ubuntu.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="service-title">CCTV Installation</h3>
+                        <p class="service-description">
+                            Instalasi dan konfigurasi CCTV analog dan IP (Hikvision, Dahua), 
+                            NVR setup, remote monitoring via mobile, dan maintenance berkala.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="service-title">Computer Repair</h3>
+                        <p class="service-description">
+                            Service laptop & PC semua merek, rakit komputer custom, upgrade hardware, 
+                            troubleshooting, dan data recovery untuk personal & korporat.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <h3 class="service-title">DevOps & Automation</h3>
+                        <p class="service-description">
+                            Implementasi Git untuk kolaborasi tim, automation dengan Ansible, 
+                            containerization dengan Docker, dan monitoring server.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <span class="section-subtitle fade-up">Get In Touch</span>
+                    <h2 class="section-title fade-up">Let's discuss your project</h2>
+                    <p class="about-text fade-up">
+                        Butuh bantuan untuk infrastruktur IT, pengembangan web, atau maintenance? 
+                        Saya siap membantu mewujudkan solusi teknologi untuk bisnis Anda.
+                    </p>
+                    <div class="contact-info fade-up">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>sfxtech@example.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone / WhatsApp</h4>
+                                <p>+62 812 3456 7890</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <p>Surabaya, Jawa Timur, Indonesia</p>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="contact-form fade-up">
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Your Name">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control form-control-lg" placeholder="Your Email">
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Subject">
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control form-control-lg" rows="5" placeholder="Your Message"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-custom btn-primary-custom w-100">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SFX Tech. All rights reserved. Designed with <i class="fas fa-heart text-danger"></i></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Theme Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            const icon = themeToggle.querySelector('i');
+
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.className = savedTheme;
+                icon.className = savedTheme === 'light-theme' ? 'fas fa-moon' : 'fas fa-sun';
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('light-theme')) {
+                    body.classList.replace('light-theme', 'dark-theme');
+                    icon.className = 'fas fa-sun';
+                    localStorage.setItem('theme', 'dark-theme');
+                } else {
+                    body.classList.replace('dark-theme', 'light-theme');
+                    icon.className = 'fas fa-moon';
+                    localStorage.setItem('theme', 'light-theme');
+                }
+            });
+
+            // Initial animations with GSAP
+            const tl = gsap.timeline();
+
+            tl.from('#greeting', {
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            })
+            .from('#heroTitle', {
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            }, '-=0.5')
+            .from('#heroSubtitle', {
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            }, '-=0.5')
+            .from('#heroButtons', {
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            }, '-=0.5')
+            .from('#heroImage', {
+                x: 50,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'power3.out'
+            }, '-=1');
+
+            // Scroll animations for fade-up elements
+            const fadeElements = document.querySelectorAll('.fade-up');
+            
+            fadeElements.forEach(element => {
+                gsap.fromTo(element, 
+                    {
+                        y: 50,
+                        opacity: 0
+                    },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 1,
+                        scrollTrigger: {
+                            trigger: element,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                );
+            });
+
+            // Navbar background change on scroll
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+                }
+            });
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Active navigation highlight
+            window.addEventListener('scroll', () => {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Form submission handling
+            document.querySelector('form')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Terima kasih! Pesan Anda telah terkirim. (Demo)');
+            });
+
+        });
+    </script>
+</body>
+</html>
