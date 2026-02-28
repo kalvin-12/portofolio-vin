@@ -8,7 +8,7 @@
   ],
   "headers": [
     {
-      "source": "/images/kalvin.jpg",
+      "source": "/images/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
